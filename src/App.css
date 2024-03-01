@@ -14,6 +14,7 @@
   align-items: center;
   justify-content: space-between;
   margin: 10px 0 10px 0;
+  margin: 20px;
 }
 
 .my-card-body {
@@ -69,19 +70,12 @@ input[type="number"] {
 }
 
 .common-button {
-  background-color: #b8e259;
-  color: #333;
-  width: 200px;
+  background-color: #47cea1;
+  color: #ffffff;
+  width: 230px;
 }
 .to-complete-button {
   background-color: #d7e2bd;
   color: #333;
   width: 150px;
-}
-
-@media screen and (max-width: 600px) {
-  .App {
-    text-align: center;
-    margin: 20px;
-  }
 }
