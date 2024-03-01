@@ -1,7 +1,5 @@
 .App {
   text-align: center;
-  margin: 60px;
-  margin: 60px;
 }
 .sticky {
   position: fixed;
@@ -11,11 +9,11 @@
   border-radius: 15px;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin: 10px;
 }
 
 .my-card-body {
