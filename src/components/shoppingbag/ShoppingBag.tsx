@@ -5,11 +5,13 @@ import { Category } from "../../model/Item";
 import Prodotti from "../prodotti-card/Prodotti";
 import "./shoppingBag.css";
 import FinishIcon from "../prodotti-card/FinishIcon";
+import SmileIcon from "../prodotti-card/SmileIcon";
 const ShoppingBag = () => {
   const [data, setData] = useState<Item[]>([]);
   const [value, setValue] = useState("");
   const [doubleItem, setDoubleItem] = useState("");
   const [switchAll, setSwitchAll] = useState(false);
+  const [guacamole, setCloseGuacamole] = useState(true);
 
   const deleteItem = (item: Item) => {
     setData(data.filter((i) => i !== item));
@@ -76,6 +78,48 @@ const ShoppingBag = () => {
     <>
       {/* SEZIONE DI RICERCA */}
       <div className="my-card">
+        {guacamole ? (
+          <div
+            className="alert alert-warning alert-dismissible fade show"
+            role="alert"
+          >
+            <strong>Holy guacamole!</strong> Metti o Togli un prodotto. Oppure
+            prova con <strong>Metti i più comuni in lista!</strong>. Seleziona i{" "}
+            <strong>preferiti</strong> premendo il{" "}
+            <strong>cuore spezzato</strong> e poi premi su{" "}
+            <strong>Togli tutto</strong>, goditi la spesa{" "}
+            <strong>Da prendere!</strong>
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+              onClick={() => setCloseGuacamole(!guacamole)}
+            ></button>
+          </div>
+        ) : (
+          <div
+            className="my-hint mb-3 "
+            onClick={() => setCloseGuacamole(!guacamole)}
+          >
+            <strong className="pl-4" style={{ color: "#664D03" }}>
+              Holy guacamole!
+            </strong>{" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="35"
+              height="35"
+              fill="#664D03"
+              className="bi bi-arrow-down-short my-arrow mb-1"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"
+              />
+            </svg>
+          </div>
+        )}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="50"
@@ -136,19 +180,7 @@ const ShoppingBag = () => {
           ? doubleItem
           : ""}
 
-        {data.length === 0 ? (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="300"
-            height="300"
-            fill="#141414"
-            className="bi bi-emoji-laughing mt-5 pt-4"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-            <path d="M12.331 9.5a1 1 0 0 1 0 1A5 5 0 0 1 8 13a5 5 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5" />
-          </svg>
-        ) : null}
+        {data.length === 0 ? <SmileIcon width={300} color="#141414" /> : null}
       </p>
       {uniqueData.map((item, index) => (
         <div
@@ -179,13 +211,9 @@ const ShoppingBag = () => {
         {uniqueData.length === 0 && <h2>Iniziamo!</h2>}
 
         {uniqueData.every((item) => item.owned) && uniqueData.length > 0 && (
-          <h2>
-            <FinishIcon />
-            <FinishIcon />
-            <FinishIcon /> Finito! <FinishIcon />
-            <FinishIcon />
-            <FinishIcon />
-          </h2>
+          <div className="mt-0 mb-5 pb-4">
+            <SmileIcon width={100} color="white" />
+          </div>
         )}
       </div>
     </>
