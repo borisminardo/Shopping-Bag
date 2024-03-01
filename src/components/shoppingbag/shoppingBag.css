@@ -128,6 +128,9 @@
   align-items: center;
   border-top: 1px solid #b3b3b3;
 }
+.last-card {
+  margin-bottom: 35%;
+}
 @media screen and (max-width: 600px) {
   .my-title {
     font-size: 2rem;

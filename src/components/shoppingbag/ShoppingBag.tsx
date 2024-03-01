@@ -136,8 +136,11 @@ const ShoppingBag = () => {
           ? doubleItem
           : ""}
       </p>
-      {uniqueData.map((item) => (
-        <div key={item.id}>
+      {uniqueData.map((item, index) => (
+        <div
+          key={item.id}
+          className={index === uniqueData.length - 1 ? "last-card" : ""}
+        >
           <Prodotti
             item={item}
             deleteProduct={deleteItem}
