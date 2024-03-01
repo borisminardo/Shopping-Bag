@@ -17,7 +17,7 @@ const Prodotti: React.FC<ActionsProps> = ({
 }) => {
   return (
     <>
-      <div className="my-card">
+      <div className="my-card-single">
         <h5 className="my-card-header"></h5>
         <div className="my-card-body">
           <h1>
