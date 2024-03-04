@@ -113,12 +113,11 @@ const ShoppingBag = () => {
             role="alert"
           >
             Con Shopping Bag.. , <strong>Metti</strong> o <strong>Togli</strong>{" "}
-            manualmente un prodotto, selezioni rapidamente i prodotti con{" "}
-            <strong>Metti i più comuni in lista!</strong> Selezioni quelli che
-            ti servono con il <strong>Cuore spezzato</strong> e poi{" "}
-            <strong>Tieni i preferiti</strong>. Premi{" "}
-            <strong>Da prendere</strong> ogni volta che trovi un prodotto
-            durante lo shopping!
+            manualmente un prodotto, puoi <strong>Incollare una lista</strong>{" "}
+            della spesa da Whatsapp!!, o{" "}
+            <strong>Mettere i prodotti più comuni in lista!</strong> Seleziona
+            poi quelli che ti servono con il <strong>Cuore spezzato</strong> e{" "}
+            <strong>Tieniti i preferiti</strong>.
             <button
               type="button"
               className="btn-close"
@@ -188,7 +187,8 @@ const ShoppingBag = () => {
             className="my-input"
             type="text"
             value={value}
-            placeholder="Scrivi qualcosa o incolla una lista da Whatsapp..."
+            id="text"
+            placeholder="Scrivi o Incolla una lista..."
             onChange={(e) => setValue(e.target.value)}
             onPaste={handlePaste}
           ></input>
