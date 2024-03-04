@@ -4,7 +4,7 @@ import { mostCommons } from "../../service/mostCommons";
 import { Category } from "../../model/Item";
 import Prodotti from "../prodotti-card/Prodotti";
 import "./shoppingBag.css";
-import SmileIcon from "../prodotti-card/SmileIcon";
+import SmileIcon from "../prodotti-card/icons/SmileIcon";
 import TopSection from "../top-section/TopSection";
 const ShoppingBag = () => {
   const [data, setData] = useState<Item[]>([]);
