@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Item } from "../../model/Item";
 import { mostCommons } from "../../service/mostCommons";
 import { Category } from "../../model/Item";
@@ -11,7 +11,8 @@ const ShoppingBag = () => {
   const [value, setValue] = useState("");
   const [doubleItem, setDoubleItem] = useState("");
   const [switchAll, setSwitchAll] = useState(false);
-  const [guacamole, setCloseGuacamole] = useState(true);
+  const [guacamole, setCloseGuacamole] = useState(false);
+  const [pastedText, setPastedText] = useState("");
 
   const deleteItem = (item: Item) => {
     setData(data.filter((i) => i !== item));
@@ -56,18 +57,46 @@ const ShoppingBag = () => {
       setDoubleItem("Questo elemento esiste già!");
     } else {
       if (value.length > 0) {
-        const newItem: Item = {
-          id: Math.random(),
-          name: value.charAt(0).toUpperCase() + value.slice(1),
-          heart: false,
-          category: Category.NESSUNA,
-          owned: false,
-        };
-        setData([...data, newItem]);
-        setValue("");
+        if (pastedText.length > 0) {
+          insertPastedItems();
+        } else {
+          insertTypedItems();
+        }
       }
     }
   };
+
+  const insertPastedItems = () => {
+    const pastedItems: Item[] = pastedText.split(",").map((item) => ({
+      id: Math.random(),
+      name: item.trim().charAt(0).toUpperCase() + item.trim().slice(1),
+      heart: false,
+      category: Category.NESSUNA,
+      owned: false,
+    }));
+
+    const filteredData = pastedItems.filter((data) => data.name !== "");
+    setData([...data, ...filteredData]);
+    setPastedText("");
+    setValue("");
+  };
+
+  const insertTypedItems = () => {
+    const newItem: Item = {
+      id: Math.random(),
+      name: value.charAt(0).toUpperCase() + value.slice(1),
+      heart: false,
+      category: Category.NESSUNA,
+      owned: false,
+    };
+    setData([...data, newItem]);
+    setValue("");
+  };
+  function handlePaste(event: React.ClipboardEvent<HTMLInputElement>) {
+    setPastedText("");
+    const pastedText = event.clipboardData.getData("text");
+    setPastedText(pastedText);
+  }
 
   const uniqueData = data.filter(
     (item, index, self) =>
@@ -83,11 +112,11 @@ const ShoppingBag = () => {
             className="alert alert-warning alert-dismissible fade show"
             role="alert"
           >
-            <strong>Holy guacamole!</strong> Metti o Togli manualmente un
-            prodotto, o seleziona rapidamente i prodotti comuni con{" "}
-            <strong>Metti i più comuni in lista!</strong> Seleziona quelli che
-            ti servono premendo il <strong>cuore spezzato</strong> e poi su{" "}
-            <strong>Tieni i preferiti</strong>. Infine premi{" "}
+            Con Shopping Bag.. , <strong>Metti</strong> o <strong>Togli</strong>{" "}
+            manualmente un prodotto, selezioni rapidamente i prodotti con{" "}
+            <strong>Metti i più comuni in lista!</strong> Selezioni quelli che
+            ti servono con il <strong>Cuore spezzato</strong> e poi{" "}
+            <strong>Tieni i preferiti</strong>. Premi{" "}
             <strong>Da prendere</strong> ogni volta che trovi un prodotto
             durante lo shopping!
             <button
@@ -115,7 +144,7 @@ const ShoppingBag = () => {
               viewBox="0 0 16 16"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"
               />
             </svg>
@@ -159,7 +188,9 @@ const ShoppingBag = () => {
             className="my-input"
             type="text"
             value={value}
+            placeholder="Scrivi qualcosa o incolla una lista da Whatsapp..."
             onChange={(e) => setValue(e.target.value)}
+            onPaste={handlePaste}
           ></input>
 
           <button
