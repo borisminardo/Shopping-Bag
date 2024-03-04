@@ -157,12 +157,21 @@ const ShoppingBag = () => {
           ? doubleItem
           : ""}
 
-        {data.length === 0 ? <SmileIcon width={300} color="#141414" /> : null}
+        {data.length === 0 ? (
+          <div
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="3000"
+          >
+            <SmileIcon width={300} color="#141414" />
+          </div>
+        ) : null}
       </p>
       {uniqueData.map((item, index) => (
         <div
           key={item.id}
           className={index === uniqueData.length - 1 ? "last-card" : ""}
+          data-aos="zoom-in-up"
         >
           <Prodotti
             item={item}
