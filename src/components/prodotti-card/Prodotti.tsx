@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Actions from "../actions/Actions";
-import FavouriteIcon from "./FavouriteIcon";
+import FavouriteIcon from "./icons/FavouriteIcon";
 import { Item } from "../../model/Item";
 import "./prodotti.css";
 interface ActionsProps {
@@ -15,9 +15,14 @@ const Prodotti: React.FC<ActionsProps> = ({
   ownItem,
   heartItem,
 }) => {
+  useEffect(() => {
+    console.log(item);
+  }, [item]);
   return (
     <>
-      <div className="my-card-single">
+      <div
+        className={`my-card-single + ${item?.owned ? " owned" : " notOwned"}`}
+      >
         <h5 className="my-card-header"></h5>
         <div className="my-card-body">
           <h1>

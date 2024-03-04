@@ -1,0 +1,7 @@
+.my-hint {
+  background-color: #fff3cd;
+  border: 1px solid #fbe9af;
+  border-radius: 5px;
+  padding: 5px 2px 5px 15px;
+  align-self: flex-end;
+}

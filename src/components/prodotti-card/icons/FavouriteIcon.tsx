@@ -1,5 +1,5 @@
 import React from "react";
-import { Item } from "../../model/Item";
+import { Item } from "../../../model/Item";
 interface ActionsProps {
   item: Item;
   heartItem: (item: Item) => void;

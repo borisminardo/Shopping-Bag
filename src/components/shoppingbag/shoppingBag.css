@@ -56,7 +56,6 @@
 }
 .my-title {
   margin-bottom: 1px;
-  margin-top: 20px;
 }
 
 .my-icon {
@@ -121,21 +120,18 @@
   bottom: 0;
   width: 100%;
   height: 100px;
-  background-color: #ffdd6e;
-  color: #fbfbfb;
+  background-color: #f8c82d;
+  color: #393939;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.finish {
+  background-color: #b8e259;
+}
 .last-card {
   margin-bottom: 35%;
-}
-.my-hint {
-  background-color: #fff3cd;
-  border: 1px solid #fbe9af;
-  border-radius: 5px;
-  padding: 5px 2px 5px 10px;
-  align-self: flex-end;
 }
 
 .my-arrow:hover {
