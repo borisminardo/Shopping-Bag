@@ -83,12 +83,13 @@ const ShoppingBag = () => {
             className="alert alert-warning alert-dismissible fade show"
             role="alert"
           >
-            <strong>Holy guacamole!</strong> Metti o Togli un prodotto. Oppure
-            prova con <strong>Metti i più comuni in lista!</strong>. Seleziona i{" "}
-            <strong>preferiti</strong> premendo il{" "}
-            <strong>cuore spezzato</strong> e poi premi su{" "}
-            <strong>Togli tutto</strong>, goditi la spesa{" "}
-            <strong>Da prendere!</strong>
+            <strong>Holy guacamole!</strong> Metti o Togli manualmente un
+            prodotto, o seleziona rapidamente i prodotti comuni con{" "}
+            <strong>Metti i più comuni in lista!</strong> Seleziona quelli che
+            ti servono premendo il <strong>cuore spezzato</strong> e poi su{" "}
+            <strong>Tieni i preferiti</strong>. Infine premi{" "}
+            <strong>Da prendere</strong> ogni volta che trovi un prodotto
+            durante lo shopping!
             <button
               type="button"
               className="btn-close"
