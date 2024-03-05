@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 function App() {
   AOS.init();
   return (
-    <div className="App">
+    <div className="App" style={{ overflow: "hidden" }}>
       <ShoppingBag />
     </div>
   );

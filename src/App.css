@@ -1,6 +1,7 @@
 .App {
   text-align: center;
 }
+
 .sticky {
   position: fixed;
 }
@@ -8,11 +9,11 @@
   background-color: #ffffff;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
   padding: 20px;
+  max-height: 220px;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 4rem;
 }
 
 .my-card-body {
@@ -64,7 +65,9 @@ input[type="number"] {
 .metti-button {
   background-color: #b8e259;
   color: #333;
-  width: 80px;
+  width: 70px !important;
+  height: 45px;
+  margin-right: 2rem;
 }
 
 .common-button {
@@ -107,18 +110,42 @@ input[type="number"] {
 
   .save-button {
     margin-top: 0rem;
+    max-width: 217px;
+  }
+
+  .common-button {
+    margin-left: 0px;
+    max-width: 340px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .delete-button {
+    margin-left: 0px;
   }
 }
 
 @media screen and (max-width: 330px) {
-  .common-button {
-    width: auto;
-  }
   .my-btn-outline-secondary {
     width: auto;
   }
+}
+
+@media screen and (max-width: 290px) {
+  .my-btn-outline-secondary {
+    width: auto;
+  }
+  .delete-button {
+    margin-left: 0px;
+  }
 
   .save-button {
-    margin-top: 0.9rem;
+    margin-top: 0rem;
+    max-width: 117px;
+  }
+
+  .common-button {
+    margin-left: 0px;
+    max-width: 240px;
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Item } from "../../model/Item";
 import { mostCommons } from "../../service/mostCommons";
 import { Category } from "../../model/Item";
@@ -31,7 +31,7 @@ const ShoppingBag = () => {
   const mostCommon = () => {
     setSwitchAll(true);
     const combinedList = Array.from(
-      new Set([...data, ...mostCommons])
+      new Set([...mostCommons, ...data])
     ) as Item[];
     setData(combinedList);
   };
@@ -65,6 +65,9 @@ const ShoppingBag = () => {
     }
   };
 
+  function resetTextareaHeight() {}
+  useEffect(() => {}, [value]);
+
   const insertPastedItems = () => {
     const pastedItems: Item[] = pastedText.split(",").map((item) => ({
       id: Math.random(),
@@ -75,23 +78,38 @@ const ShoppingBag = () => {
     }));
 
     const filteredData = pastedItems.filter((data) => data.name !== "");
-    setData([...data, ...filteredData]);
+    setData([...filteredData, ...data]);
     setPastedText("");
     setValue("");
   };
 
   const insertTypedItems = () => {
-    const newItem: Item = {
-      id: Math.random(),
-      name: value.charAt(0).toUpperCase() + value.slice(1),
-      heart: false,
-      category: Category.NESSUNA,
-      owned: false,
-    };
-    setData([...data, newItem]);
-    setValue("");
+    if (!value.includes(",") && !value.includes("\n")) {
+      const newItem: Item = {
+        id: Math.random(),
+        name: value.charAt(0).toUpperCase() + value.slice(1),
+        heart: false,
+        category: Category.NESSUNA,
+        owned: false,
+      };
+      setData([newItem, ...data]);
+      setValue("");
+    } else {
+      const pastedItems: Item[] = value.split(/,|\n/).map((item) => ({
+        id: Math.random(),
+        name: item.trim().charAt(0).toUpperCase() + item.trim().slice(1),
+        heart: false,
+        category: Category.NESSUNA,
+        owned: false,
+      }));
+
+      const filteredData = pastedItems.filter((data) => data.name !== "");
+      setData([...filteredData, ...data]);
+      setPastedText("");
+      setValue("");
+    }
   };
-  function handlePaste(event: React.ClipboardEvent<HTMLInputElement>) {
+  function handlePaste(event: React.ClipboardEvent<HTMLTextAreaElement>) {
     setPastedText("");
     const pastedText = event.clipboardData.getData("text");
     setPastedText(pastedText);
@@ -106,8 +124,23 @@ const ShoppingBag = () => {
     <>
       {/* SEZIONE DI RICERCA */}
       <div className="my-card">
-        <TopSection />
-        <div className="">
+        <h1 className="my-title">
+          {" "}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            fill="currentColor"
+            className="bi bi-cart4 "
+            viewBox="0 0 16 16"
+          >
+            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+          </svg>{" "}
+          Shopping Bag..
+        </h1>
+        <br />
+
+        <div className="top-box">
           <p className="my-text mb-2">
             <button
               disabled={switchAll}
@@ -126,29 +159,29 @@ const ShoppingBag = () => {
             Tieni i preferiti
           </button>
         </div>
-        <br></br>
-        <div className="">
-          <input
-            className="my-input"
-            type="text"
-            value={value}
-            id="text"
-            placeholder="Scrivi o Incolla a, b, c"
-            onChange={(e) => setValue(e.target.value)}
-            onPaste={handlePaste}
-          ></input>
-
-          <button
-            className="my-button metti-button "
-            id="save"
-            onClick={insertItem}
-          >
-            Metti
-          </button>
-        </div>
-        <br />
+      </div>{" "}
+      <TopSection />
+      <div className=" text-area-box  row">
+        <textarea
+          className="my-text-area col"
+          value={value}
+          id="your-textarea-id"
+          placeholder="Scrivi, vai a capo o Incolla a, b, c"
+          onChange={(e) => {
+            setValue(e.target.value);
+            e.target.rows = e.target.value.split("\n").length || 1;
+          }}
+          onPaste={handlePaste}
+          rows={value.split("\n").length || 1}
+        ></textarea>
+        <button
+          className="my-button metti-button col-3"
+          id="save"
+          onClick={insertItem}
+        >
+          Metti
+        </button>
       </div>
-
       {/* SEZIONE DI PRODOTTI */}
       <p>
         {data.length === 0
@@ -162,6 +195,7 @@ const ShoppingBag = () => {
             data-aos="flip-left"
             data-aos-easing="ease-out-cubic"
             data-aos-duration="3000"
+            className="mb-4 pb-4"
           >
             <SmileIcon width={300} color="#141414" />
           </div>
@@ -181,33 +215,23 @@ const ShoppingBag = () => {
           />
         </div>
       ))}
-
       {uniqueData.filter((item) => !item.owned).length > 1 && (
         <div className="footer">
-          <h2>
-            Ti mancano altri {uniqueData.filter((item) => !item.owned).length}{" "}
+          <h6>
+            Da prendere altri {uniqueData.filter((item) => !item.owned).length}{" "}
             prodotti!
-          </h2>
+          </h6>
         </div>
       )}
-
       {uniqueData.filter((item) => !item.owned).length === 1 && (
         <div className="footer">
-          <h2>Ti manca 1 prodotto!</h2>
+          <h6>Da prendere 1 prodotto!</h6>
         </div>
       )}
-
-      {uniqueData.length === 0 && (
-        <div className="footer">
-          {" "}
-          <h2>Iniziamo!</h2>{" "}
-        </div>
-      )}
-
       {uniqueData.every((item) => item.owned) && uniqueData.length > 0 && (
         <div className="footer finish">
           <div className=" mt-0 mb-5 pb-4 ">
-            <SmileIcon width={100} color="white" />
+            <SmileIcon width={60} color="white" />
           </div>
         </div>
       )}
