@@ -21,24 +21,25 @@ const Prodotti: React.FC<ActionsProps> = ({
   return (
     <>
       <div
-        className={`my-card-single + ${item?.owned ? " owned" : " notOwned"}`}
+        className={` row my-card-single + ${
+          item?.owned ? " owned" : " notOwned"
+        }`}
       >
-        <h5 className="my-card-header"></h5>
-        <div className="my-card-body">
-          <h1>
-            <span className="truncate-text">
-              {item?.name?.charAt(0).toUpperCase() + item?.name?.slice(1)}
-            </span>
-          </h1>
+        <div className=" col-5  mobile-margin-top  d-flex align-items-center justify-content-start flex-grow-1 ">
+          <h3>{item?.name?.charAt(0).toUpperCase() + item?.name?.slice(1)}</h3>{" "}
+        </div>
+
+        <div className=" col  mobile-margin-top d-flex align-items-center justify-content-end flex-grow-1">
           <FavouriteIcon item={item} heartItem={heartItem} />
         </div>
-        <div>
+
+        <span className="col mt-3 mb-3 d-flex align-items-center justify-content-end flex-grow-1">
           <Actions
             item={item}
             deleteProduct={deleteProduct}
             ownItem={ownItem}
           />
-        </div>
+        </span>
       </div>
     </>
   );

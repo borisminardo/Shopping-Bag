@@ -8,11 +8,8 @@
 .my-card-single {
   background-color: #ffffff;
   border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   margin: 20px;
+  min-height: 70px;
 }
 
 .owned {
@@ -21,4 +18,16 @@
 
 .notOwned {
   box-shadow: 0 4px 12px 0 #ff000066;
+}
+
+@media screen and (max-width: 900px) {
+  .my-card-single {
+    min-height: 120px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .mobile-margin-top {
+    margin-top: 15px;
+  }
 }

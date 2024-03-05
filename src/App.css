@@ -6,15 +6,13 @@
 }
 .my-card {
   background-color: #ffffff;
-  border-radius: 15px;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
   padding: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 0 10px 0;
-  margin: 20px;
+  margin-bottom: 4rem;
 }
 
 .my-card-body {
@@ -83,11 +81,44 @@ input[type="number"] {
   width: 150px;
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 1159px) {
+  h1 {
+    font-size: 15px !important;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  h1 {
+    font-size: 30px !important;
+  }
+  .my-card {
+    display: block;
+  }
+
+  .save-button {
+    margin-top: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .my-card {
+    flex-direction: column;
+  }
+
+  .save-button {
+    margin-top: 0rem;
+  }
+}
+
+@media screen and (max-width: 330px) {
   .common-button {
     width: auto;
   }
   .my-btn-outline-secondary {
     width: auto;
+  }
+
+  .save-button {
+    margin-top: 0.9rem;
   }
 }

@@ -133,7 +133,7 @@ const ShoppingBag = () => {
             type="text"
             value={value}
             id="text"
-            placeholder="Scrivi o Incolla una lista..."
+            placeholder="Scrivi o Incolla a, b, c"
             onChange={(e) => setValue(e.target.value)}
             onPaste={handlePaste}
           ></input>

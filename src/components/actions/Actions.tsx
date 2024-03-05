@@ -8,8 +8,8 @@ interface ActionsProps {
 }
 const Actions: React.FC<ActionsProps> = ({ item, deleteProduct, ownItem }) => {
   return (
-    <div className="my-card-actions row ">
-      <div className="mt-3 col">
+    <>
+      <span className=" ">
         <button
           className="my-button delete-button w-20"
           id="del"
@@ -28,8 +28,8 @@ const Actions: React.FC<ActionsProps> = ({ item, deleteProduct, ownItem }) => {
             <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
           </svg>
         </button>
-      </div>
-      <div className="mt-3 col ">
+      </span>
+      <span className="  ">
         <button
           className={`button-width my-button  ${
             !item.owned ? "to-complete-button" : "completed-button"
@@ -39,8 +39,8 @@ const Actions: React.FC<ActionsProps> = ({ item, deleteProduct, ownItem }) => {
         >
           {item.owned ? "Preso!" : "Da prendere"}
         </button>
-      </div>
-    </div>
+      </span>
+    </>
   );
 };
 

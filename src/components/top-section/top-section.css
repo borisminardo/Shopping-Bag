@@ -3,5 +3,17 @@
   border: 1px solid #fbe9af;
   border-radius: 5px;
   padding: 5px 2px 5px 15px;
-  align-self: flex-end;
+  align-self: center;
+}
+
+@media screen and (min-width: 900px) {
+  .alert-dismissible {
+    max-width: 400px !important;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .my-hint {
+    align-self: flex-end;
+  }
 }
