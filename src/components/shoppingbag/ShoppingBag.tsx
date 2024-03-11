@@ -6,12 +6,14 @@ import Prodotti from "../prodotti-card/Prodotti";
 import "./shoppingBag.css";
 import SmileIcon from "../prodotti-card/icons/SmileIcon";
 import TopSection from "../top-section/TopSection";
+import Liste from "../liste/Liste";
 const ShoppingBag = () => {
   const [data, setData] = useState<Item[]>([]);
   const [value, setValue] = useState("");
   const [doubleItem, setDoubleItem] = useState("");
   const [switchAll, setSwitchAll] = useState(false);
   const [pastedText, setPastedText] = useState("");
+  const [showListe, setShowListe] = useState(false);
 
   const deleteItem = (item: Item) => {
     setData(data.filter((i) => i !== item));
@@ -65,9 +67,6 @@ const ShoppingBag = () => {
     }
   };
 
-  function resetTextareaHeight() {}
-  useEffect(() => {}, [value]);
-
   const insertPastedItems = () => {
     const pastedItems: Item[] = pastedText.split(",").map((item) => ({
       id: Math.random(),
@@ -120,6 +119,10 @@ const ShoppingBag = () => {
       index === self.findIndex((t) => t.name === item.name || t.id === item.id)
   ) as Item[];
 
+  const openListe = () => {
+    !showListe ? setShowListe(true) : setShowListe(false);
+  };
+
   return (
     <>
       {/* SEZIONE DI RICERCA */}
@@ -139,7 +142,6 @@ const ShoppingBag = () => {
           Shopping Bag..
         </h1>
         <br />
-
         <div className="top-box">
           <p className="my-text mb-2">
             <button
@@ -158,7 +160,17 @@ const ShoppingBag = () => {
           <button className="my-button save-button  " onClick={keepFavourites}>
             Tieni i preferiti
           </button>
-        </div>
+          {/*
+          <button
+            className="my-button liste-button pl-3"
+            type="button"
+            onClick={openListe}
+          >
+            Liste
+          </button>*/}
+        </div>{" "}
+        {/*
+        {showListe && <Liste />}*/}
       </div>{" "}
       <TopSection />
       <div className=" text-area-box  row">
@@ -225,7 +237,7 @@ const ShoppingBag = () => {
       )}
       {uniqueData.filter((item) => !item.owned).length === 1 && (
         <div className="footer">
-          <h6>Da prendere 1 prodotto!</h6>
+          <h6>Da prendere: 1 prodotto!</h6>
         </div>
       )}
       {uniqueData.every((item) => item.owned) && uniqueData.length > 0 && (

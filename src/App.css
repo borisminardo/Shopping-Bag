@@ -9,7 +9,6 @@
   background-color: #ffffff;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
   padding: 20px;
-  max-height: 220px;
   display: flex;
   flex-direction: row;
   align-items: baseline;
@@ -82,6 +81,11 @@ input[type="number"] {
   background-color: #d7e2bd;
   color: #333;
   width: 150px;
+}
+
+.liste-button {
+  background-color: #c7d6e1;
+  color: #333;
 }
 
 @media screen and (max-width: 1159px) {

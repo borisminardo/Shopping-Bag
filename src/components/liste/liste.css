@@ -1,0 +1,34 @@
+.liste-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 20rem;
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 15px;
+}
+
+.new-list {
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-text-color {
+  font-size: 35px;
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+  color: rgb(184, 184, 184);
+}
