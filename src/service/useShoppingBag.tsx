@@ -11,7 +11,6 @@ const useShoppingBag = () => {
   const [guacamole, setCloseGuacamole] = useState(false);
 
   const categoryList = Object.values(Category);
-
   const mostCommon = () => {
     setDisableCommonBtn(true);
     const combinedList = Array.from(
@@ -19,6 +18,7 @@ const useShoppingBag = () => {
     ) as Item[];
     setData(combinedList);
   };
+
   const deleteItem = (item: Item) => {
     setData(data.filter((i) => i !== item));
   };
@@ -123,13 +123,11 @@ const useShoppingBag = () => {
     setData([...itemsWithCategory, ...remainingItems]);
   };
 
-  function handlePaste(event: React.ClipboardEvent<HTMLTextAreaElement>) {
+  const handlePaste = (event: React.ClipboardEvent<HTMLTextAreaElement>) => {
     setPastedText("");
     const pastedText = event.clipboardData.getData("text");
     setPastedText(pastedText);
-  }
-
-  // Other methods...
+  };
 
   return {
     data,
