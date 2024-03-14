@@ -11,7 +11,7 @@ const CheckFeatures = ({ data, doubleItem }: Props) => {
       {data.length === 0 ? (
         <p>"Nulla di aggiunto per ora.."</p>
       ) : doubleItem ? (
-        doubleItem
+        <p className="mt-3"> {doubleItem}</p>
       ) : (
         ""
       )}
