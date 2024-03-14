@@ -7,12 +7,11 @@
 }
 .my-card {
   background-color: #ffffff;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
   padding: 20px;
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .my-card-body {
@@ -45,14 +44,28 @@ input[type="number"] {
   transition: all 0.3s ease;
 }
 
+.my-input {
+  width: 100%;
+  padding: 3px 15px;
+  border-radius: 15px;
+  border: 1px solid rgb(179, 179, 179);
+}
 .delete-button {
   background-color: #ff4d6d;
   color: white;
+  margin-left: 5px;
 }
 
 .save-button {
   background-color: #5dc5e2;
   color: white;
+}
+
+.filter-button {
+  background-color: #5dc5e2;
+  color: white;
+  width: 70px !important;
+  height: 45px;
 }
 
 .completed-button {
@@ -88,6 +101,10 @@ input[type="number"] {
   color: #333;
 }
 
+.dropdown {
+  inset: auto auto 0px 0px !important;
+}
+
 @media screen and (max-width: 1159px) {
   h1 {
     font-size: 15px !important;
@@ -113,7 +130,8 @@ input[type="number"] {
   }
 
   .save-button {
-    margin-top: 0rem;
+    margin-top: 0.9rem;
+    margin-bottom: 0.7rem;
     max-width: 217px;
   }
 
@@ -124,9 +142,6 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 420px) {
-  .delete-button {
-    margin-left: 0px;
-  }
 }
 
 @media screen and (max-width: 330px) {
@@ -139,12 +154,8 @@ input[type="number"] {
   .my-btn-outline-secondary {
     width: auto;
   }
-  .delete-button {
-    margin-left: 0px;
-  }
 
   .save-button {
-    margin-top: 0rem;
     max-width: 117px;
   }
 

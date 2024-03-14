@@ -1,12 +1,9 @@
-import { useState } from "react";
-import "./top-section.css";
-type TopSectionProps = {
+import "./guacamoleAlert.css";
+type Props = {
   guacamole: boolean;
   setCloseGuacamole: (value: boolean) => void;
 };
-const TopSection = () => {
-  const [guacamole, setCloseGuacamole] = useState(false);
-
+const GuacamoleAlert = ({ guacamole, setCloseGuacamole }: Props) => {
   return (
     <>
       {guacamole ? (
@@ -15,17 +12,20 @@ const TopSection = () => {
           role="alert"
         >
           Con Shopping Bag.. , <strong>Metti</strong> o <strong>Togli</strong>{" "}
-          manualmente un prodotto, puoi <strong>Incollare una lista</strong>{" "}
-          della spesa da Whatsapp!!, o{" "}
-          <strong>Mettere i prodotti più comuni in lista!</strong> Seleziona poi
-          quelli che ti servono con il <strong>Cuore spezzato</strong> e{" "}
-          <strong>Tieniti i preferiti</strong>.
+          manualmente un prodotto, oppure <strong>Incolla una lista</strong>{" "}
+          dalle note!! La comodità è che puoi{" "}
+          <strong>mettere i prodotti più comuni in lista!</strong> Seleziona i
+          preferiti con il <strong>Cuore spezzato</strong> e Tieni solo quelli.
+          Puoi anche filtrare per <strong>Categoria</strong> o cambiarla. Tieni
+          la pagina aperta quando la usi però, al momento i dati
+          <strong> non vengono salvati </strong>, quindi se ricarichi la pagina
+          perdi i progressi..
           <button
             type="button"
             className="btn-close"
             data-bs-dismiss="alert"
             aria-label="Close"
-            onClick={() => setCloseGuacamole(!guacamole)}
+            onClick={() => setCloseGuacamole(guacamole)}
           ></button>
         </div>
       ) : (
@@ -55,4 +55,4 @@ const TopSection = () => {
   );
 };
 
-export default TopSection;
+export default GuacamoleAlert;

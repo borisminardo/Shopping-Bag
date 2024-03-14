@@ -60,12 +60,7 @@
   border-radius: 5px;
   margin-left: 0.6rem;
 }
-.my-input {
-  width: 100%;
-  padding: 3px 15px;
-  border-radius: 15px;
-  border: 1px solid rgb(179, 179, 179);
-}
+
 .my-do {
   width: 80px;
   margin: 5px;

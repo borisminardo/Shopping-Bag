@@ -1,0 +1,35 @@
+.login-box {
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  margin: 0 auto;
+  margin-top: 160px;
+  margin-bottom: 50px;
+}
+
+.login-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-items: space-between;
+  padding: 10px;
+}
+
+.login-button {
+  background-color: #5dc5e2;
+  color: white;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+  .login-box {
+    width: 320px;
+  }
+}
